@@ -1,0 +1,42 @@
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</a>
+ 
+<!-- Be sure to leave the brand out there if you want it shown -->
+<%= link_to "LIFE-SHARE", root_path, :class => 'brand' %>
+ 
+<!-- Everything you want hidden at 940px or less, place within here -->
+<div class="nav-collapse collapse">
+<!-- .nav, .navbar-search, .navbar-form, etc -->
+  <ul class="nav">
+
+    <li <%= active(root_path) %> ><%= link_to "Home", root_path %></li>
+    <% if user_signed_in? %>
+      <li>
+      <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
+      </li>
+    <% else %>
+      <li <%= active(new_user_session_path) %> >
+      <%= link_to('Login', new_user_session_path)  %>
+      </li>
+    <% end %>
+    <% if user_signed_in? %>
+      <li <%= active(edit_user_registration_path) %> >
+        <%= link_to('Edit login credentials', edit_user_registration_path) %>
+       </li> 
+      
+        <% if current_user.userdetail.nil? %>
+          <li <%= active(new_userdetail_path) %> ><%= link_to('Profile', new_userdetail_path) %></li>
+        <% else %>
+          <li <%= active(edit_userdetail_path(current_user)) %> ><%= link_to('Profile', edit_userdetail_path(current_user)) %> </li>
+        <% end %>  
+      <% else %>
+        <li <%= active(new_user_registration_path) %> >
+          <%= link_to('Sign up', new_user_registration_path)  %>
+        </li>
+    <% end %>
+  </ul>
+
+</div>

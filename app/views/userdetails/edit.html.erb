@@ -1,0 +1,34 @@
+<h4>UPDATE YOUR PROFILE:</h4><br/>
+
+  <%= form_for @userdetail, :html => {:multipart => true}, method: "put" do |f| %>
+		<% if @userdetail.errors.any? %>
+			<div class="alert alert-error">
+				<%= @userdetail.errors.full_messages.join("<br/>").html_safe %>
+			</div>
+		<% end %>
+
+		<%= f.text_field :name, class: "span3", placeholder: "Got a name" %>
+		<%= f.text_field :location, class: "span3", placeholder: "Current Location" %>
+		
+		<br/>
+		<%= f.label :image, "PROFILE IMAGE" %>
+		<%= f.file_field :image %>
+		
+		<br/>
+		<%= f.label :status, "CURRENT STATUS" %>
+		<%= f.text_field :status, class: "span4", placeholder: "Single or complicated..???" %><br/>
+		<%= f.label :interest, "INTERESTs:" %>
+		<%= f.text_area :interest, class: "span4", placeholder: "Let people know your interests", rows: 6 %><br/>
+		
+		
+		<%= f.text_field :zip_code, class: "span2", placeholder: "zip_code" %>
+		<%= f.text_field :country, class: "span2", placeholder: "Country" %><br/>
+
+
+		<%= f.label :month_of_birth, "DATE_OF_BIRTH:" %>
+		<%= f.text_field :month_of_birth, class: "span2", placeholder: "Birth month" %>
+		<%= f.text_field :date_of_birth, class: "span2", placeholder: "Birth date" %>
+		<%= f.text_field :year_of_birth, class: "span2", placeholder: "Birth year" %> <br/>
+		
+		<%= f.submit "Update your profile!", class: "btn btn-large btn-primary" %>
+	<% end %>

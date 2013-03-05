@@ -1,0 +1,27 @@
+<h5>Share a date idea and start talking to those who dream the same:</h5><br/>
+
+	<%= form_for @dateidea do |f| %>
+		<% if @dateidea.errors.any? %>
+			<div class="alert alert-error">
+				<%= @dateidea.errors.full_messages.join("<br/>").html_safe %>
+			</div>
+		<% end %>
+
+		<%= f.label :dateidea, "Got a date-idea:" %>
+		<%= f.text_area :dateidea, class: "span12", placeholder: "Express what's your feelings today...", rows: 3 %>
+		<br/><br/>
+
+
+	    <div class="date_place_clickable" data-toggle="collapse" data-target="#dateplace">
+			Got a specific place for your dream date...Click here <i class="icon-chevron-down"></i>
+		</div>
+	 
+		<div id="dateplace" class="collapse">
+			<%= f.label :place, "Got a place in mind for this date", class: "muted" %>
+			<%= f.text_field :place, class: "span4", placeholder: "Name it" %><br/>
+			<%= f.text_field :city, class: "span2", placeholder: "Which city" %>
+			<%= f.text_field :zip_code, class: "span2", placeholder: "remember the Zip?" %><br/>
+		</div>	
+		<br/>
+		<%= f.submit "Expresssss it!", class: "btn btn-large btn-primary" %>
+	<% end %>

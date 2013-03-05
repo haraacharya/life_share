@@ -1,0 +1,31 @@
+code snippet
+<%= image_tag dateidea.user.userdetail.image_url.to_s %>
+<%= dateidea.dateidea %>, By <%= dateidea.user.userdetail.name %>
+
+
+<%= link_to date_idea_path(dateidea) do %>
+
+
+
+
+<% @dateideas.each do |dateidea| %>
+		
+		<div class="row-fluid">
+			
+			<div class="span8">
+		    
+			    <% if !dateidea.user.userdetail.nil? %> 
+					<%= image_tag dateidea.user.userdetail.image_url(:thumb).to_s if !dateidea.user.userdetail.image.nil? %>
+				<% end %>
+		    	<%= link_to date_idea_path(dateidea) do %>
+					<%= dateidea.dateidea %>
+				<% end %>	
+			</div>
+			
+			<div class="span4">
+				<div class="pull-right muted"><%= time_ago_in_words(dateidea.created_at) %> ago, <br/>By <%= dateidea.user.userdetail.name %></div>
+			</div>
+			
+		</div>
+				
+	<% end %>

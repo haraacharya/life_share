@@ -1,0 +1,48 @@
+<div class="alert alert-info">	
+	We don't need your credit card or money. Create your profile and start sharing your life with others.
+</div>	
+
+<h4>BUILD YOUR PROFILE & SHARE YOUR LIFE:</h4><br/>
+
+  <%= form_for @userdetail, :html => {:multipart => true} do |f| %>
+		<% if @userdetail.errors.any? %>
+			<div class="alert alert-error">
+				<%= @userdetail.errors.full_messages.join("<br/>").html_safe %>
+			</div>
+		<% end %>
+
+		<div class="profile-form row-fluid">
+			<div class="mandatory span6">		
+				<div class="row-fluid">	
+					<div class="muted">MANDATORY FIELDS:</div><br/>
+					<%= f.label :name, "NAME:" %>
+					<%= f.text_field :name, class: "span6 offset6", placeholder: "Got a name" %>
+					<%= f.label :gender, "GENDER:" %>
+					<%= f.text_field :gender, class: "span6 offset6", placeholder: "Gender" %>
+					<%= f.label :status, "CURRENT STATUS:" %>
+					<%= f.text_field :status, class: "span6 offset6", placeholder: "Single or complicated..???" %>
+					<%= f.label :year_of_birth, "YEAR_OF_BIRTH:" %>
+					<%= f.text_field :year_of_birth, class: "span3 offset9", placeholder: "Birth year" %>
+					<%= f.label :location, "LOCATION:" %>
+					<%= f.text_field :location, class: "span6 offset6", placeholder: "Current Location / City" %><br/>
+					<%= f.text_field :country, class: "span3 offset9", placeholder: "Country" %><br/>
+				</div>		
+			</div>
+
+			<div class="optional span6">
+				<div class="row-fluid">
+					<div class="muted">OPTIONAL FILEDS:</div><br/>
+					<%= f.label :image, "PROFILE IMAGE:" %>
+					<%= f.file_field :image %><br/>
+					
+					<%= f.label :interest, "INTERESTs:" %>
+					<%= f.text_area :interest, class: "span12", placeholder: "Let people know your interests", rows: 6 %>
+					<%= f.label :month_of_birth, "MONTH_OF_BIRTH:" %>
+					<%= f.text_field :month_of_birth, class: "span4 offset8", placeholder: "Birth month" %>
+					<%= f.text_field :date_of_birth, class: "span4 offset8", placeholder: "Birth date" %><br/>
+					<%= f.text_field :zip_code, class: "span3 offset9", placeholder: "zip_code" %><br/>
+				</div>	
+			</div>
+		</div>
+		<%= f.submit "Create your profile!", class: "btn btn-large btn-primary" %>
+	<% end %>

@@ -1,0 +1,90 @@
+<div id="post-a-date">	
+	<div class="form-post-area">
+	<h5>Share a date idea and start talking to those who dream the same:</h5><br/>
+
+	<%= form_for @dateidea do |f| %>
+		<% if @dateidea.errors.any? %>
+			<div class="alert alert-error">
+				<%= @dateidea.errors.full_messages.join("<br/>").html_safe %>
+			</div>
+		<% end %>
+
+		<%= f.label :dateidea, "Got a date-idea:" %>
+		<%= f.text_area :dateidea, class: "span10", placeholder: "Express what's your feelings today...", rows: 3 %>
+		<br/>
+
+
+	    <div class="date_place_clickable" data-toggle="collapse" data-target="#dateplace">
+			Got a specific place for your dream date...Click here <i class="icon-chevron-down icon-white"></i>
+		</div>
+	 
+		<div id="dateplace" class="collapse">
+			<%= f.label :place, "Got a place in mind for this date", class: "muted" %>
+			<%= f.text_field :place, class: "span4", placeholder: "Name it" %><br/>
+			<%= f.text_field :city, class: "span2", placeholder: "Which city" %>
+			<%= f.text_field :zip_code, class: "span2", placeholder: "remember the Zip?" %><br/>
+		</div>	
+		<br/>
+		<%= f.submit "Expresssss it!", class: "btn btn-large btn-primary" %>
+	<% end %>
+	</div>
+
+</div>
+<br/>
+
+<div id="date-ideas-home">
+	Date Ideas by life share users...<br/><br/>
+
+	<% @dateideas.each do |dateidea| %>
+		<div class="well well-small">
+			<div class="row-fluid">
+			
+			<div class="span1 date-idea-vote">
+				<%= link_to date_idea_votes_path(dateidea, :direction => "up"), :method => :post do %>
+					<div class="btn"><i class="icon-thumbs-up"></i></div><br/>
+				<% end %>
+				<%= dateidea.vote_number %><br/>
+				<%= link_to date_idea_votes_path(dateidea, :direction => "down"), :method => :post do %>
+					<div class="btn"><i class="icon-thumbs-down"></i></div>
+				<% end %>	
+			</div>	
+			
+			<div class="span1">
+				<% if !dateidea.user.userdetail.nil? %> 
+					<%  if !dateidea.user.userdetail.image.nil? %>
+						<%= image_tag(dateidea.user.userdetail.image_url(:thumb).to_s, :class => "img-rounded") %>
+					<% end %>
+				<% end %>
+			</div>
+			
+			<div class="span7">
+				<div class="pull-left">
+					<%= link_to date_idea_path(dateidea) do %>
+						<%= dateidea.dateidea %> (<%= pluralize(dateidea.comments.count, "Comment") %>)<br/>
+					<% end %>
+					<div class="date-place muted">
+						<%= dateidea.place %> <%= dateidea.city %> <%= dateidea.zip_code %>
+					</div>	
+				</div>
+			</div>	
+			<div class="span3">
+				<div class="pull-left muted">
+					<% if !dateidea.user.userdetail.nil? %> 
+						By <%= link_to userdetail_path(dateidea.user.userdetail) do %>
+							<%= dateidea.user.userdetail.name %>, 
+						<% end %>
+					<% end %>	
+					<%= time_ago_in_words(dateidea.created_at) %> ago
+					<br/><%= link_to "Message", date_idea_path(dateidea) %> or <%= link_to "Reply privately", date_idea_path(dateidea) %>
+				</div>	
+			</div>
+			
+			</div>	
+		</div>		
+				
+	<% end %>
+
+</div>
+
+
+

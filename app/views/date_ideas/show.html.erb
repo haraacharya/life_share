@@ -1,0 +1,71 @@
+<div class="hero-unit">
+
+	<div class="profile-img row-fluid">
+		<div class="span4">
+			<% if !@userdetail.nil? %>
+				<%= image_tag(@userdetail.image_url(:thumbBig).to_s, :class => "img-rounded") %>
+				<br/><br/>By <%= @userdetail.name %>
+			<% end %>	
+		</div>
+		<div class="span8">
+			<%= @dateidea.dateidea %>
+		</div>	
+	</div>
+</div>	
+<br/>
+
+<div class="span6 pull-left">
+COMMENT:<br/>
+<%= form_for [@dateidea, @comment] do |f| %>
+	<% if @comment.errors.any? %>
+		<div class="alert alert-error">
+			<%= @comment.errors.full_messages.join("<br/>").html_safe %>
+		</div>
+	<% end %>
+
+	<%= f.text_area :reply, rows: 4, class: "span6", placeholder: "Add a comment!" %><br/>
+	<%= f.submit "Post comment!", class: "btn btn-primary" %>
+<% end %>
+</div>
+
+
+<div class="discussion-date-idea">
+
+	<div class="main-date-idea">
+		<div class="span6 well well-small pull-left">
+			<%= @dateidea.dateidea %>
+		</div>	
+	</div>	
+	
+	<div class="replies">
+		<% i = 0 %>
+		<% @comments.each do |comment| %>
+			<% if i.even? %>
+				<div class="span6 well well-small pull-right">
+			<% else %>		
+				<div class="span6 well well-small pull-left">	
+			<% end %>		
+					<div class="row-fluid">
+						<div class="span8">
+							<%= comment.reply %><br/>
+						</div>
+						<div class="span4 pull-right">
+							<%= time_ago_in_words(comment.created_at) %> ago,<br/>
+								<% if !comment.user.userdetail.nil? %>
+									By <%= link_to userdetail_path(comment.user.userdetail) do %>
+										<%= comment.user.userdetail.name %> 
+									<% end %>
+								<% end %>	
+						</div>
+					</div>			
+			</div><br/>
+			<% i = i + 1 %>
+		<% end %>	
+	</div>	
+
+</div>	
+
+
+
+
+
