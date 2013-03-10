@@ -22,7 +22,8 @@
 					<%= f.label :status, "CURRENT STATUS:" %>
 					<%= f.text_field :status, class: "span6 offset6", placeholder: "Single or complicated..???" %>
 					<%= f.label :year_of_birth, "YEAR_OF_BIRTH:" %>
-					<%= f.text_field :year_of_birth, class: "span3 offset9", placeholder: "Birth year" %>
+					<%= f.text_field :year_of_birth, class: "span3 offset9", placeholder: "Birth year" %><br/>
+					<%= select_year(Date.today, {:start_year => Time.now.year, :end_year => Time.now.year - 95, :field_name => :year_of_birth, :prefix => :userdetail}, {:class => "span3 offset9"}) %>
 					<%= f.label :location, "LOCATION:" %>
 					<%= f.text_field :location, class: "span6 offset6", placeholder: "Current Location / City" %><br/>
 					<%= f.text_field :country, class: "span3 offset9", placeholder: "Country" %><br/>

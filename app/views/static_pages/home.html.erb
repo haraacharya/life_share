@@ -1,4 +1,4 @@
-<div id="post-a-date">	
+<div id="post-a-date" class="thumbnail">	
 	<div class="form-post-area">
 		<h4><span>Share a date idea and start talking to those who dream the same:</span></h4><br/>
 
@@ -52,7 +52,7 @@
 			<div class="span1">
 				<% if !dateidea.user.userdetail.nil? %> 
 					<%  if !dateidea.user.userdetail.image.nil? %>
-						<%= image_tag(dateidea.user.userdetail.image_url(:thumb).to_s, :class => "img-rounded") %>
+						
 					<% end %>
 				<% end %>
 			</div>
