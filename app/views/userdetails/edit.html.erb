@@ -7,28 +7,41 @@
 			</div>
 		<% end %>
 
-		<%= f.text_field :name, class: "span3", placeholder: "Got a name" %>
-		<%= f.text_field :location, class: "span3", placeholder: "Current Location" %>
-		
-		<br/>
-		<%= f.label :image, "PROFILE IMAGE" %>
-		<%= f.file_field :image %>
-		
-		<br/>
-		<%= f.label :status, "CURRENT STATUS" %>
-		<%= f.text_field :status, class: "span4", placeholder: "Single or complicated..???" %><br/>
-		<%= f.label :interest, "INTERESTs:" %>
-		<%= f.text_area :interest, class: "span4", placeholder: "Let people know your interests", rows: 6 %><br/>
-		
-		
-		<%= f.text_field :zip_code, class: "span2", placeholder: "zip_code" %>
-		<%= f.text_field :country, class: "span2", placeholder: "Country" %><br/>
+		<div class="profile-form row-fluid">
+			<div class="mandatory span6">		
+				<div class="row-fluid">	
+					<div class="muted">MANDATORY FIELDS:</div><br/>
+					<%= f.label :name, "NAME:" %>
+					<%= f.text_field :name, class: "span6", placeholder: "Got a name" %><br/>
+					<%= f.label :gender, "GENDER:" %>
+					<%= select(:userdetail, :gender, %w[Male Female], {:prompt => "Select gender"}) %>
+					<%= f.label :status, "CURRENT STATUS:" %>
+					<%= f.text_field :status, class: "span6", placeholder: "Single or complicated..???" %><br/>
+					<%= f.label :year_of_birth, "YEAR OF BIRTH (e.g. 1980):" %>
+					<%= f.text_field :year_of_birth, class: "span3", placeholder: "e.g. 1980" %><br/>
+					<%= f.label :location, "LOCATION:" %>
+					<%= f.text_field :location, class: "span6", placeholder: "Current Location / City" %><br/>
+					<%= country_select(:userdetail, :country, "select country") %><br/>
+				</div>		
+			</div>
 
-
-		<%= f.label :month_of_birth, "DATE_OF_BIRTH:" %>
-		<%= f.text_field :month_of_birth, class: "span2", placeholder: "Birth month" %>
-		<%= f.text_field :date_of_birth, class: "span2", placeholder: "Birth date" %>
-		<%= f.text_field :year_of_birth, class: "span2", placeholder: "Birth year" %> <br/>
+			<div class="optional span6">
+				<div class="row-fluid">
+					<div class="muted">OPTIONAL FILEDS:</div><br/>
+					<%= f.label :image, "PROFILE IMAGE:" %>
+					<%#We are working on it. Please update your Gravatar image. It will automatically reflect here.</br>%>
+					<%= f.file_field :image %><br/>
+					
+					<%= f.label :interest, "INTERESTS (Matching interest leads to matching date):" %>
+					<%= f.text_area :interest, class: "span12", placeholder: "Let people know your interests", rows: 6 %>
+					<%= f.label :month_of_birth, "MONTH_OF_BIRTH:" %>
+					<%= f.text_field :month_of_birth, class: "span4", placeholder: "e.g. February" %>
+					<%= f.text_field :date_of_birth, class: "span4", placeholder: "e.g. 14" %><br/>
+					<%= f.label :zip_code, "ZIP CODE:" %>
+					<%= f.text_field :zip_code, class: "span3", placeholder: "zip_code" %><br/>
+				</div>	
+			</div>
+		</div>
 		
 		<%= f.submit "Update your profile!", class: "btn btn-large btn-primary" %>
 	<% end %>

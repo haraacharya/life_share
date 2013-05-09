@@ -3,8 +3,8 @@
 	<div class="profile-img row-fluid">
 		<div class="span4">
 			<% if !@userdetail.nil? %>
-				<%= image_tag(@userdetail.image_url(:thumbBig).to_s, :class => "img-rounded") %>
-				<br/><br/>By <%= @userdetail.name %>
+				Location: <%= @userdetail.location %> (<%= @userdetail.country %>)<br/>
+				By <%= @userdetail.name %>(<%= @userdetail.gender %>)
 			<% end %>	
 		</div>
 		<div class="span8">

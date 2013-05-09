@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 		@comment.user = current_user
 		
 		if @comment.save
-			redirect_to date_idea_path(@dateidea), notice: "Replied successfully"
+			redirect_to date_idea_path(@dateidea), notice: "Posted successfully..."
 		else
 			render "new"
 		end

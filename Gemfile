@@ -12,6 +12,8 @@ end
 gem 'devise'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'countries'
+gem 'fog'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

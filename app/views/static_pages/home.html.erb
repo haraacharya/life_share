@@ -15,7 +15,7 @@
 
 
 		    <div class="date_place_clickable form-lebel-text" data-toggle="collapse" data-target="#dateplace">
-				<span>Got a specific place for your dream date...Click here <i class="icon-chevron-down icon-white"></i></span>
+				<span>Got a specific place for your dream date...<abbr title="Click here to fill place and location (Not mandatory)">CLICK HERE</abbr> <i class="icon-chevron-down icon-white"></i></span>
 			</div>
 		 
 			<div id="dateplace" class="collapse">
@@ -33,7 +33,7 @@
 <br/>
 
 <div id="date-ideas-home">
-	Date Ideas by life share users...<br/><br/>
+	Date Ideas by life-share users...<br/>
 
 	<% @dateideas.each do |dateidea| %>
 		<div class="well well-small">
@@ -51,8 +51,10 @@
 			
 			<div class="span1">
 				<% if !dateidea.user.userdetail.nil? %> 
-					<%  if !dateidea.user.userdetail.image.nil? %>
-						
+					<%  if dateidea.user.userdetail.image.to_s != "" %>
+						<%= image_tag dateidea.user.userdetail.image_url(:thumb).to_s %>
+					<% else %>
+						<%= "Photo not updated" %>	
 					<% end %>
 				<% end %>
 			</div>
