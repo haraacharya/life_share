@@ -1,2 +1,3 @@
-<%= image_tag @userdetail.image_url(:thumbBig).to_s %>
+<%= image_tag @userdetail.image_url(:thumbBig).to_s %><br/>
+<%= link_to "wanna change your photo", edit_userdetail_path(@userdetail) %><br/>
 <%= @userdetail.name %>
