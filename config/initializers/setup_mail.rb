@@ -4,7 +4,7 @@ ActionMailer::Base.smtp_settings = {
   #:domain               => "http://mailme-nosreves.herokuapp.com",
   :domain               => "http://lifeshare.herokuapp.com",
   :user_name            => "donotreply.mailme@gmail.com",
-  :password             => "Bekham@2",
+  :password             => "*****",
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
